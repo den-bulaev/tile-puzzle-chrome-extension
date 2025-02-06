@@ -299,16 +299,18 @@ function App() {
           />
         </label>
 
-        <label htmlFor="sizeSelect" className="toolbar_item select-label">
+        <label htmlFor="size-select" className="toolbar_item select-label">
           Puzzle size:
           <select
-            id="sizeSelect"
+            id="size-select"
             className="select"
             onChange={handleChangePuzzleSize}
-            value={gameSize}
+            value={`${gameSize}`}
           >
             {puzzleSizeSelectOptions.map((item) => (
-              <option value={item.value}>{item.text}</option>
+              <option key={item.value} value={`${item.value}`}>
+                {item.text}
+              </option>
             ))}
           </select>
         </label>
