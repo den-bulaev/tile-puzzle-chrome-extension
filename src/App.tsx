@@ -305,10 +305,10 @@ function App() {
             id="size-select"
             className="select"
             onChange={handleChangePuzzleSize}
-            value={`${gameSize}`}
+            value={gameSize}
           >
             {puzzleSizeSelectOptions.map((item) => (
-              <option key={item.value} value={`${item.value}`}>
+              <option key={item.value} value={item.value}>
                 {item.text}
               </option>
             ))}
