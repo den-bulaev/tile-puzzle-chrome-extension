@@ -52,10 +52,10 @@ function App() {
     }
   };
 
-  const calculateCorrectTiles = (items: IPuzzleGridItems[]) => {
+  const calculateCorrectTiles = (items: IPuzzleGridItems[], sizeOfGame?: number) => {
     items.forEach((element, indx) => {
       const elCorrectPosition = element.id;
-      const elActualPosition = getActualRowAndCol(indx + 1, gameSize);
+      const elActualPosition = getActualRowAndCol(indx + 1, sizeOfGame ?? gameSize);
 
       if (elCorrectPosition === elActualPosition) {
         updateCorrectTiles(ECorrectTilesAction.update, elActualPosition);
@@ -223,7 +223,7 @@ function App() {
         gameFieldRef,
         +e.target.value
       ).then((puzzleData) => {
-        calculateCorrectTiles(puzzleData);
+        calculateCorrectTiles(puzzleData, +e.target.value);
         setGrid(puzzleData);
       });
     }
