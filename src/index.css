@@ -76,6 +76,10 @@ body {
   cursor: pointer;
 }
 
+.select_default-option {
+  display: none;
+}
+
 .prime-btn {
   padding: 5px;
   background-color: var(--prime-color);

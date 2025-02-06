@@ -131,22 +131,22 @@ export const preparePuzzle = (
 };
 
 export const selectTemplateOptions: ISelect<string>[] = [
-  { value: Mask, text: "Mask" },
-  { value: Ducati, text: "Ducati" },
-  { value: MonaLisa, text: "Mona-Lisa" },
-  { value: Balloons, text: "Balloons" },
-  { value: TajMahal, text: "Taj-Mahal" },
+  { value: Mask, text: "Mask_img" },
+  { value: Ducati, text: "Ducati_img" },
+  { value: MonaLisa, text: "Mona-Lisa_img" },
+  { value: Balloons, text: "Balloons_img" },
+  { value: TajMahal, text: "Taj-Mahal_img" },
 ];
 
 export const puzzleSizeSelectOptions: ISelect<number>[] = [
-  { value: 3, text: "3" },
-  { value: 4, text: "4" },
-  { value: 5, text: "5" },
-  { value: 6, text: "6" },
-  { value: 7, text: "7" },
-  { value: 8, text: "8" },
-  { value: 9, text: "9" },
-  { value: 10, text: "10" },
+  { value: 3, text: "Game-size 3" },
+  { value: 4, text: "Game-size 4" },
+  { value: 5, text: "Game-size 5" },
+  { value: 6, text: "Game-size 6" },
+  { value: 7, text: "Game-size 7" },
+  { value: 8, text: "Game-size 8" },
+  { value: 9, text: "Game-size 9" },
+  { value: 10, text: "Game-size 10" },
 ];
 
 interface ISelect<T> {

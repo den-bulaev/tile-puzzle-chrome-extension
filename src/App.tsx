@@ -267,22 +267,22 @@ function App() {
           />
         </div>
 
-        <label htmlFor="template-select" className="toolbar_item select-label">
-          Template:
+        <div className="toolbar_item">
           <select
-            id="template-select"
             className="select"
             onChange={handleChangeTemplateSelect}
             value={templateSelectValue.current}
           >
-            <option value="">Select</option>
+            <option className="select_default-option" value="">
+              Select template
+            </option>
             {selectTemplateOptions.map((item) => (
               <option value={item.value} key={item.text}>
                 {item.text}
               </option>
             ))}
           </select>
-        </label>
+        </div>
 
         <label
           htmlFor="show-template"
@@ -299,21 +299,22 @@ function App() {
           />
         </label>
 
-        <label htmlFor="size-select" className="toolbar_item select-label">
-          Puzzle size:
+        <div className="toolbar_item">
           <select
-            id="size-select"
             className="select"
             onChange={handleChangePuzzleSize}
             value={gameSize}
           >
+            <option className="select_default-option" value="">
+              Select size
+            </option>
             {puzzleSizeSelectOptions.map((item) => (
               <option key={item.value} value={item.value}>
                 {item.text}
               </option>
             ))}
           </select>
-        </label>
+        </div>
 
         <div className="toolbar_item tiles-counter">
           {`Score: ${correctTiles.size} from ${gameSize * gameSize}`}
