@@ -39,19 +39,6 @@ function App() {
   }, [stopFireworks]);
 
   useEffect(() => {
-    if (grid.length) {
-      grid.forEach((element, indx) => {
-        const elCorrectPosition = element.id;
-        const elActualPosition = getActualRowAndCol(indx + 1, gameSize);
-
-        if (elCorrectPosition === elActualPosition) {
-          updateCorrectTiles(ECorrectTilesAction.update, elActualPosition);
-        }
-      });
-    }
-  }, [grid]);
-
-  useEffect(() => {
     if (correctTiles.size === gameSize * gameSize) {
       if (typeof launchFireworks === "function") {
         launchFireworks();
@@ -63,6 +50,17 @@ function App() {
     if (!document.hidden && stopFireworks) {
       stopFireworks();
     }
+  };
+
+  const calculateCorrectTiles = (items: IPuzzleGridItems[]) => {
+    items.forEach((element, indx) => {
+      const elCorrectPosition = element.id;
+      const elActualPosition = getActualRowAndCol(indx + 1, gameSize);
+
+      if (elCorrectPosition === elActualPosition) {
+        updateCorrectTiles(ECorrectTilesAction.update, elActualPosition);
+      }
+    });
   };
 
   const updateCorrectTiles = (action: ECorrectTilesAction, item: string) => {
@@ -101,7 +99,10 @@ function App() {
       sampleCanvasRef,
       gameFieldRef,
       gameSize
-    ).then((puzzleData) => setGrid(puzzleData));
+    ).then((puzzleData) => {
+      calculateCorrectTiles(puzzleData);
+      setGrid(puzzleData);
+    });
   };
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
@@ -221,7 +222,10 @@ function App() {
         sampleCanvasRef,
         gameFieldRef,
         +e.target.value
-      ).then((res) => setGrid(res));
+      ).then((puzzleData) => {
+        calculateCorrectTiles(puzzleData);
+        setGrid(puzzleData);
+      });
     }
   };
 
@@ -242,8 +246,9 @@ function App() {
     templateSelectValue.current = targetVal;
 
     preparePuzzle(targetVal, sampleCanvasRef, gameFieldRef, gameSize).then(
-      (res) => {
-        setGrid(res);
+      (puzzleData) => {
+        calculateCorrectTiles(puzzleData);
+        setGrid(puzzleData);
       }
     );
 
