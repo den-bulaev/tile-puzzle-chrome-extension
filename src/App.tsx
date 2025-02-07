@@ -279,7 +279,7 @@ function App() {
             value={templateSelectValue.current}
           >
             <option className="select_default-option" value="">
-              Select template
+              Template
             </option>
             {selectTemplateOptions.map((item) => (
               <option value={item.value} key={item.text}>

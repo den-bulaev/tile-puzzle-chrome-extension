@@ -131,11 +131,11 @@ export const preparePuzzle = (
 };
 
 export const selectTemplateOptions: ISelect<string>[] = [
-  { value: Mask, text: "Mask_img" },
-  { value: Ducati, text: "Ducati_img" },
-  { value: MonaLisa, text: "Mona-Lisa_img" },
-  { value: Balloons, text: "Balloons_img" },
-  { value: TajMahal, text: "Taj-Mahal_img" },
+  { value: Mask, text: "Mask" },
+  { value: Ducati, text: "Ducati" },
+  { value: MonaLisa, text: "Mona-Lisa" },
+  { value: Balloons, text: "Balloons" },
+  { value: TajMahal, text: "Taj-Mahal" },
 ];
 
 export const puzzleSizeSelectOptions: ISelect<number>[] = [
