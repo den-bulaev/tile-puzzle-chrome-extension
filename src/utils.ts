@@ -139,14 +139,14 @@ export const selectTemplateOptions: ISelect<string>[] = [
 ];
 
 export const puzzleSizeSelectOptions: ISelect<number>[] = [
-  { value: 3, text: "Game-size 3" },
-  { value: 4, text: "Game-size 4" },
-  { value: 5, text: "Game-size 5" },
-  { value: 6, text: "Game-size 6" },
-  { value: 7, text: "Game-size 7" },
-  { value: 8, text: "Game-size 8" },
-  { value: 9, text: "Game-size 9" },
-  { value: 10, text: "Game-size 10" },
+  { value: 3, text: "Size 3" },
+  { value: 4, text: "Size 4" },
+  { value: 5, text: "Size 5" },
+  { value: 6, text: "Size 6" },
+  { value: 7, text: "Size 7" },
+  { value: 8, text: "Size 8" },
+  { value: 9, text: "Size 9" },
+  { value: 10, text: "Size 10" },
 ];
 
 interface ISelect<T> {
