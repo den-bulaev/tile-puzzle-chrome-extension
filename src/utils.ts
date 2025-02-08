@@ -14,17 +14,28 @@ export const getActualRowAndCol = (indx: number, gameSize: number): string => {
   return transformRowAndCol(row, col);
 };
 
-export function shuffleArr<T>(arr: T[]): T[] {
+export function shuffleGridArr(
+  arr: IPuzzleGridItems[],
+  updateCorrectTiles: (action: ECorrectTilesAction, item: string) => void,
+  sizeOfGame: number
+): IPuzzleGridItems[] {
   let j;
   let temp;
 
   const arrCopy = [...arr];
 
-  for (let i = arrCopy.length - 1; i > 0; i -= 1) {
+  for (let i = arrCopy.length - 1; i >= 0; i -= 1) {
     j = Math.floor(Math.random() * (i + 1));
     temp = arrCopy[j];
     arrCopy[j] = arrCopy[i];
     arrCopy[i] = temp;
+
+    const elCorrectPosition = arrCopy[i].id;
+    const elActualPosition = getActualRowAndCol(i + 1, sizeOfGame);
+
+    if (elCorrectPosition === elActualPosition) {
+      updateCorrectTiles(ECorrectTilesAction.update, elActualPosition);
+    }
   }
 
   return arrCopy;
@@ -34,7 +45,8 @@ export const preparePuzzle = (
   file: File | string,
   sampleCanvasRef: React.MutableRefObject<HTMLCanvasElement | null>,
   gameFieldRef: React.MutableRefObject<HTMLDivElement | null>,
-  gameSize: number
+  gameSize: number,
+  updateCorrectTiles: (action: ECorrectTilesAction, item: string) => void,
 ): Promise<IPuzzleGridItems[]> => {
   const maxAlfaWidth = 700;
   const maxAlfaHeight = 500;
@@ -123,7 +135,7 @@ export const preparePuzzle = (
             }
           }
 
-          resolve(shuffleArr(imgPieces));
+          resolve(shuffleGridArr(imgPieces, updateCorrectTiles, gameSize));
         }
       };
     }

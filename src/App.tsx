@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import {
   ECorrectTilesAction,
-  getActualRowAndCol,
   IPuzzleGridItems,
   preparePuzzle,
   puzzleSizeSelectOptions,
@@ -52,17 +51,6 @@ function App() {
     }
   };
 
-  const calculateCorrectTiles = (items: IPuzzleGridItems[], sizeOfGame?: number) => {
-    items.forEach((element, indx) => {
-      const elCorrectPosition = element.id;
-      const elActualPosition = getActualRowAndCol(indx + 1, sizeOfGame ?? gameSize);
-
-      if (elCorrectPosition === elActualPosition) {
-        updateCorrectTiles(ECorrectTilesAction.update, elActualPosition);
-      }
-    });
-  };
-
   const updateCorrectTiles = (action: ECorrectTilesAction, item: string) => {
     setCorrectTiles((prev) => {
       const updatedTiles = new Set(prev);
@@ -98,9 +86,9 @@ function App() {
       imageFile.current,
       sampleCanvasRef,
       gameFieldRef,
-      gameSize
+      gameSize,
+      updateCorrectTiles
     ).then((puzzleData) => {
-      calculateCorrectTiles(puzzleData);
       setGrid(puzzleData);
     });
   };
@@ -221,9 +209,9 @@ function App() {
         imageFile.current,
         sampleCanvasRef,
         gameFieldRef,
-        +e.target.value
+        +e.target.value,
+        updateCorrectTiles
       ).then((puzzleData) => {
-        calculateCorrectTiles(puzzleData, +e.target.value);
         setGrid(puzzleData);
       });
     }
@@ -245,12 +233,15 @@ function App() {
 
     templateSelectValue.current = targetVal;
 
-    preparePuzzle(targetVal, sampleCanvasRef, gameFieldRef, gameSize).then(
-      (puzzleData) => {
-        calculateCorrectTiles(puzzleData);
-        setGrid(puzzleData);
-      }
-    );
+    preparePuzzle(
+      targetVal,
+      sampleCanvasRef,
+      gameFieldRef,
+      gameSize,
+      updateCorrectTiles
+    ).then((puzzleData) => {
+      setGrid(puzzleData);
+    });
 
     imageFile.current = targetVal;
   };
