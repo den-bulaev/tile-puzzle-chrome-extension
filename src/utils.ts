@@ -41,12 +41,38 @@ export function shuffleGridArr(
   return arrCopy;
 }
 
+const getCanvasHeightAndWidth = (
+  maxAlfaWidth: number,
+  maxAlfaHeight: number,
+  aspectRatio: number,
+  dpr: number,
+  isImgWidthGreater: boolean
+) => {
+  let heightForWidthGreater = maxAlfaWidth / aspectRatio;
+  const widthForWidthGreater =
+    heightForWidthGreater > maxAlfaHeight
+      ? maxAlfaHeight * aspectRatio
+      : maxAlfaWidth;
+
+  if (heightForWidthGreater > maxAlfaHeight) {
+    heightForWidthGreater = maxAlfaHeight;
+  }
+
+  const canvasWidth =
+    (isImgWidthGreater ? widthForWidthGreater : maxAlfaHeight / aspectRatio) *
+    dpr;
+  const canvasHeight =
+    (isImgWidthGreater ? heightForWidthGreater : maxAlfaHeight) * dpr;
+
+  return { canvasWidth, canvasHeight };
+};
+
 export const preparePuzzle = (
   file: File | string,
   sampleCanvasRef: React.MutableRefObject<HTMLCanvasElement | null>,
   gameFieldRef: React.MutableRefObject<HTMLDivElement | null>,
   gameSize: number,
-  updateCorrectTiles: (action: ECorrectTilesAction, item: string) => void,
+  updateCorrectTiles: (action: ECorrectTilesAction, item: string) => void
 ): Promise<IPuzzleGridItems[]> => {
   const maxAlfaWidth = 700;
   const maxAlfaHeight = 500;
@@ -83,12 +109,13 @@ export const preparePuzzle = (
           );
 
           const dpr = window.devicePixelRatio || 1;
-          const canvasWidth =
-            (isImgWidthGreater ? maxAlfaWidth : maxAlfaHeight / aspectRatio) *
-            dpr;
-          const canvasHeight =
-            (isImgWidthGreater ? maxAlfaWidth / aspectRatio : maxAlfaHeight) *
-            dpr;
+          const { canvasHeight, canvasWidth } = getCanvasHeightAndWidth(
+            maxAlfaWidth,
+            maxAlfaHeight,
+            aspectRatio,
+            dpr,
+            isImgWidthGreater
+          );
 
           sampleCanvasRef.current.width = canvasWidth;
           sampleCanvasRef.current.height = canvasHeight;
