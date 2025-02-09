@@ -1,8 +1,8 @@
-import Mask from "./assets/Mask.avif";
-import Ducati from "./assets/Ducati_Panigale.jpg";
-import MonaLisa from "./assets/Mona_Lisa.avif";
-import TajMahal from "./assets/Taj-Mahal.jpg";
-import Balloons from "./assets/albuquerque-balloon-festival-new-mexico.avif";
+import Colosseum from "./assets/Colosseum.avif";
+import Machu_Picchu from "./assets/Machu_Picchu.avif";
+import Petra_1 from "./assets/Petra_1.avif";
+import Petra_2 from "./assets/Petra_2.avif";
+import Taj_Mahal from "./assets/Taj_Mahal.avif";
 
 export const transformRowAndCol = (row: number, col: number) => {
   return `${row}-${col}`;
@@ -137,11 +137,14 @@ export const preparePuzzle = (
             for (let col = 0; col < gameSize; col++) {
               // Create a temporary canvas for each slice
               const sliceCanvas = document.createElement("canvas");
+              sliceCanvas.width = sliceWidth * dpr;
+              sliceCanvas.height = sliceHeight * dpr;
               const sliceCtx = sliceCanvas.getContext("2d");
-              sliceCanvas.width = sliceWidth;
-              sliceCanvas.height = sliceHeight;
 
               if (sliceCtx) {
+                sliceCtx.scale(dpr, dpr);
+                sliceCtx.imageSmoothingEnabled = true;
+                sliceCtx.imageSmoothingQuality = "high";
                 sliceCtx.drawImage(
                   sampleCanvasRef.current,
                   col * sliceWidth,
@@ -157,7 +160,7 @@ export const preparePuzzle = (
 
               imgPieces.push({
                 id: transformRowAndCol(row + 1, col + 1),
-                image: sliceCanvas.toDataURL("image/avif"),
+                image: sliceCanvas.toDataURL("image/png"),
               });
             }
           }
@@ -170,11 +173,11 @@ export const preparePuzzle = (
 };
 
 export const selectTemplateOptions: ISelect<string>[] = [
-  { value: Mask, text: "Mask" },
-  { value: Ducati, text: "Ducati" },
-  { value: MonaLisa, text: "Mona-Lisa" },
-  { value: Balloons, text: "Balloons" },
-  { value: TajMahal, text: "Taj-Mahal" },
+  { value: Taj_Mahal, text: "Taj_Mahal" },
+  { value: Petra_2, text: "Petra_2" },
+  { value: Machu_Picchu, text: "Machu_Picchu" },
+  { value: Colosseum, text: "Colosseum" },
+  { value: Petra_1, text: "Petra_1" },
 ];
 
 export const puzzleSizeSelectOptions: ISelect<number>[] = [

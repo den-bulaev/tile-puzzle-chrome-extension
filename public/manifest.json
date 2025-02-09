@@ -1,7 +1,7 @@
 {
-  "name": "Tile Puzzle",
-  "version": "1.2",
-  "description": "Game - time killer",
+  "name": "World Wonders Tile Puzzle",
+  "version": "1.3",
+  "description": "An exciting, customizable puzzle game",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
@@ -13,7 +13,7 @@
   "host_permissions": [],
   "action": {
     "default_popup": "index.html",
-    "default_title": "Tile Puzzle",
+    "default_title": "World Wonders Tile Puzzle",
     "default_icon": "icon48.png"
   }
 }
