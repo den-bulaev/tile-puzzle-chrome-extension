@@ -1,11 +1,13 @@
+import { useRef } from "react";
+
 export const useFireworks = (
   fireworkCanvasRef: React.MutableRefObject<HTMLCanvasElement | null>
 ): {
   launchFireworks: () => void;
   stopFireworks: () => void;
 } | null => {
-  let animationFrame: number | null = null;
-  let timer: number | null = null;
+  const animationFrame = useRef<number | null>(null);
+  const timer = useRef<number | null>(null);
 
   if (!fireworkCanvasRef.current) {
     return null;
@@ -35,7 +37,7 @@ export const useFireworks = (
 
     for (let i = 0; i < numParticles; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 5 + 2;
+      const speed = Math.random() * 5 + 0.75;
       particles.push({
         x,
         y,
@@ -72,22 +74,33 @@ export const useFireworks = (
       if (p.alpha <= 0) particles.splice(i, 1);
     }
 
-    animationFrame = requestAnimationFrame(animate);
+    animationFrame.current = requestAnimationFrame(animate);
   }
 
   function randomFirework() {
-    if (timer) {
-      clearTimeout(timer);
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+
+    if (!animationFrame.current) {
+      return;
     }
 
     createFirework(
       Math.random() * fireworkCanvasRef.current!.width,
       Math.random() * fireworkCanvasRef.current!.height
     );
-    timer = setTimeout(randomFirework, Math.random() * 1000);
+
+    timer.current = setTimeout(
+      randomFirework,
+      (Math.floor(Math.random() * (9 - 3 + 1)) + 3) * 100
+    );
   }
 
   const launchFireworks = () => {
+    if (animationFrame.current) {
+      return;
+    }
     animate();
     randomFirework();
     fireworkCanvasRef.current!.style.visibility = "visible";
@@ -95,12 +108,10 @@ export const useFireworks = (
   };
 
   const stopFireworks = () => {
-    if (!animationFrame) {
-      return;
+    if (animationFrame.current) {
+      cancelAnimationFrame(animationFrame.current);
+      animationFrame.current = null;
     }
-
-    cancelAnimationFrame(animationFrame);
-    animationFrame = null;
 
     fireworkCanvasRef.current!.style.visibility = "hidden";
     fireworkCanvasRef.current!.style.zIndex = "-1";

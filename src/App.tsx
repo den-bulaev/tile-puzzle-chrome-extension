@@ -37,14 +37,6 @@ function App() {
     };
   }, [stopFireworks]);
 
-  useEffect(() => {
-    if (correctTiles.size === gameSize * gameSize) {
-      if (typeof launchFireworks === "function") {
-        launchFireworks();
-      }
-    }
-  }, [correctTiles]);
-
   const handleVisibilityChange = () => {
     if (!document.hidden && stopFireworks) {
       stopFireworks();
@@ -61,6 +53,10 @@ function App() {
         if (updatedTiles.has(item)) {
           updatedTiles.delete(item);
         }
+      }
+
+      if (updatedTiles.size === gameSize * gameSize && launchFireworks) {
+        launchFireworks();
       }
 
       return updatedTiles;
