@@ -8,6 +8,7 @@ import {
   transformRowAndCol,
 } from "./utils";
 import { useFireworks } from "./customHooks/useFireworks";
+import Select from "./components/Select/Select";
 
 function App() {
   const [grid, setGrid] = useState<IPuzzleGridItems[]>([]);
@@ -260,20 +261,12 @@ function App() {
         </div>
 
         <div className="toolbar_item">
-          <select
-            className="select"
-            onChange={handleChangeTemplateSelect}
+          <Select
             value={templateSelectValue.current}
-          >
-            <option className="select_default-option" value="">
-              Template
-            </option>
-            {selectTemplateOptions.map((item) => (
-              <option value={item.value} key={item.text}>
-                {item.text}
-              </option>
-            ))}
-          </select>
+            handleChange={handleChangeTemplateSelect}
+            options={selectTemplateOptions}
+            defaultOptionText="Template"
+          />
         </div>
 
         <label
@@ -292,20 +285,12 @@ function App() {
         </label>
 
         <div className="toolbar_item">
-          <select
-            className="select"
-            onChange={handleChangePuzzleSize}
-            value={gameSize}
-          >
-            <option className="select_default-option" value="">
-              Select size
-            </option>
-            {puzzleSizeSelectOptions.map((item) => (
-              <option key={item.value} value={item.value}>
-                {item.text}
-              </option>
-            ))}
-          </select>
+          <Select
+            value={String(gameSize)}
+            handleChange={handleChangePuzzleSize}
+            options={puzzleSizeSelectOptions}
+            defaultOptionText="Select size"
+          />
         </div>
 
         <div className="toolbar_item tiles-counter">

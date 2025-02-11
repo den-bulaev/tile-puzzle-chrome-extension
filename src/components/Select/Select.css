@@ -1,0 +1,11 @@
+.select {
+  background-color: var(--prime-color);
+  border: none;
+  user-select: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.select_default-option {
+  display: none;
+}

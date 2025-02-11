@@ -172,7 +172,7 @@ export const preparePuzzle = (
   });
 };
 
-export const selectTemplateOptions: ISelect<string>[] = [
+export const selectTemplateOptions: ISelect[] = [
   { value: Taj_Mahal, text: "Taj_Mahal" },
   { value: Petra_2, text: "Petra_2" },
   { value: Machu_Picchu, text: "Machu_Picchu" },
@@ -180,7 +180,7 @@ export const selectTemplateOptions: ISelect<string>[] = [
   { value: Petra_1, text: "Petra_1" },
 ];
 
-export const puzzleSizeSelectOptions: ISelect<number>[] = [
+export const puzzleSizeSelectOptions: ISelect[] = [
   { value: 3, text: "Size 3" },
   { value: 4, text: "Size 4" },
   { value: 5, text: "Size 5" },
@@ -191,8 +191,8 @@ export const puzzleSizeSelectOptions: ISelect<number>[] = [
   { value: 10, text: "Size 10" },
 ];
 
-interface ISelect<T> {
-  value: T;
+export interface ISelect {
+  value: string | number;
   text: string;
 }
 

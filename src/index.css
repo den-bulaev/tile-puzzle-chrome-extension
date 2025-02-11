@@ -62,24 +62,6 @@ body {
   cursor: pointer;
 }
 
-.select-label {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.select {
-  background-color: var(--prime-color);
-  border: none;
-  user-select: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.select_default-option {
-  display: none;
-}
-
 .prime-btn {
   padding: 5px;
   background-color: var(--prime-color);
