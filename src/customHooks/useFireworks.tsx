@@ -37,7 +37,7 @@ export const useFireworks = (
 
     for (let i = 0; i < numParticles; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 5 + 0.75;
+      const speed = Math.random() + 0.75;
       particles.push({
         x,
         y,
