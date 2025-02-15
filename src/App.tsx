@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import {
   ECorrectTilesAction,
   IPuzzleGridItems,
   preparePuzzle,
-  puzzleSizeSelectOptions,
+  getPuzzleSizeSelectOptions,
   selectTemplateOptions,
   transformRowAndCol,
 } from "./utils";
@@ -37,6 +37,11 @@ function App() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [stopFireworks]);
+
+  const puzzleSizeSelectOptions = useMemo(
+    () => getPuzzleSizeSelectOptions(),
+    []
+  );
 
   const handleVisibilityChange = () => {
     if (!document.hidden && stopFireworks) {
@@ -248,7 +253,7 @@ function App() {
       <div className="toolbar" role="toolbar">
         <div className="toolbar_item">
           <label htmlFor="file-upload" className="prime-btn">
-            Choose File
+            {chrome.i18n.getMessage("choosePicture")}
           </label>
           <input
             id="file-upload"
@@ -265,7 +270,7 @@ function App() {
             value={templateSelectValue.current}
             handleChange={handleChangeTemplateSelect}
             options={selectTemplateOptions}
-            defaultOptionText="Template"
+            defaultOptionText={chrome.i18n.getMessage("picture")}
           />
         </div>
 
@@ -273,7 +278,7 @@ function App() {
           htmlFor="show-template"
           className="toolbar_item show-template-checkbox_label"
         >
-          Sample:
+          {`${chrome.i18n.getMessage("sample")}:`}
           <input
             type="checkbox"
             id="show-template"
@@ -289,12 +294,14 @@ function App() {
             value={String(gameSize)}
             handleChange={handleChangePuzzleSize}
             options={puzzleSizeSelectOptions}
-            defaultOptionText="Select size"
+            defaultOptionText={chrome.i18n.getMessage("selectSize")}
           />
         </div>
 
         <div className="toolbar_item tiles-counter">
-          {`Score: ${correctTiles.size} from ${gameSize * gameSize}`}
+          {`${chrome.i18n.getMessage("score")}: ${
+            correctTiles.size
+          } ${chrome.i18n.getMessage("from")} ${gameSize * gameSize}`}
         </div>
       </div>
 

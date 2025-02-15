@@ -1,0 +1,16 @@
+{
+  "appName": {
+    "message": "Чудеса Света Плиточный Пазл"
+  },
+  "appDescription": {
+    "message": "Захватывающий, настраиваемый пазл"
+  },
+
+  "choosePicture": { "message": "Выбрать Картинку" },
+  "picture": { "message": "Картинка" },
+  "sample": { "message": "Образец" },
+  "selectSize": { "message": "Выбрать Размер" },
+  "score": { "message": "Результат" },
+  "from": { "message": "из" },
+  "size": { "message": "Размер" }
+}

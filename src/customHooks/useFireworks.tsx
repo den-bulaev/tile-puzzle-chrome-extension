@@ -63,7 +63,7 @@ export const useFireworks = (
       const p = particles[i];
       p.x += p.speedX;
       p.y += p.speedY;
-      p.alpha -= 0.02;
+      p.alpha -= 0.019;
 
       ctx!.globalAlpha = p.alpha;
       ctx!.beginPath();

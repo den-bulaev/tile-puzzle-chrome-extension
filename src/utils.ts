@@ -180,16 +180,19 @@ export const selectTemplateOptions: ISelect[] = [
   { value: Petra_1, text: "Petra_1" },
 ];
 
-export const puzzleSizeSelectOptions: ISelect[] = [
-  { value: 3, text: "Size 3" },
-  { value: 4, text: "Size 4" },
-  { value: 5, text: "Size 5" },
-  { value: 6, text: "Size 6" },
-  { value: 7, text: "Size 7" },
-  { value: 8, text: "Size 8" },
-  { value: 9, text: "Size 9" },
-  { value: 10, text: "Size 10" },
-];
+export const getPuzzleSizeSelectOptions = (): ISelect[] => {
+  const localizedText = chrome.i18n.getMessage("Size");
+  return [
+    { value: 3, text: `${localizedText} 3` },
+    { value: 4, text: `${localizedText} 4` },
+    { value: 5, text: `${localizedText} 5` },
+    { value: 6, text: `${localizedText} 6` },
+    { value: 7, text: `${localizedText} 7` },
+    { value: 8, text: `${localizedText} 8` },
+    { value: 9, text: `${localizedText} 9` },
+    { value: 10, text: `${localizedText} 10` },
+  ];
+};
 
 export interface ISelect {
   value: string | number;

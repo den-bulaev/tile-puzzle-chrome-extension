@@ -1,0 +1,16 @@
+{
+  "appName": {
+    "message": "World Wonders Tile Puzzle"
+  },
+  "appDescription": {
+    "message": "An exciting, customizable puzzle game"
+  },
+
+  "choosePicture": { "message": "Choose Picture" },
+  "picture": { "message": "Picture" },
+  "sample": { "message": "Sample" },
+  "selectSize": { "message": "Select Size" },
+  "score": { "message": "Score" },
+  "from": { "message": "from" },
+  "size": { "message": "Size" }
+}

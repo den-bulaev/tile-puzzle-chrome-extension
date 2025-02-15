@@ -1,19 +1,20 @@
 {
-  "name": "World Wonders Tile Puzzle",
-  "version": "1.4",
-  "description": "An exciting, customizable puzzle game",
+  "name": "__MSG_appName__",
+  "version": "1.5",
+  "description": "__MSG_appDescription__",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
     "128": "icon128.png"
   },
   "manifest_version": 3,
+  "default_locale": "en",
   "author": "Den",
   "permissions": [],
   "host_permissions": [],
   "action": {
     "default_popup": "index.html",
-    "default_title": "World Wonders Tile Puzzle",
+    "default_title": "__MSG_appName__",
     "default_icon": "icon48.png"
   }
 }
