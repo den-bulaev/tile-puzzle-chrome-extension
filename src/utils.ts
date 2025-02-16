@@ -3,6 +3,7 @@ import Machu_Picchu from "./assets/Machu_Picchu.avif";
 import Petra_1 from "./assets/Petra_1.avif";
 import Petra_2 from "./assets/Petra_2.avif";
 import Taj_Mahal from "./assets/Taj_Mahal.avif";
+import Foo_Dog from "./assets/Foo_Dog.avif";
 
 export const transformRowAndCol = (row: number, col: number) => {
   return `${row}-${col}`;
@@ -174,6 +175,7 @@ export const preparePuzzle = (
 
 export const selectTemplateOptions: ISelect[] = [
   { value: Taj_Mahal, text: "Taj_Mahal" },
+  { value: Foo_Dog, text: "Foo_Dog" },
   { value: Petra_2, text: "Petra_2" },
   { value: Machu_Picchu, text: "Machu_Picchu" },
   { value: Colosseum, text: "Colosseum" },
