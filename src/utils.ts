@@ -131,21 +131,20 @@ export const preparePuzzle = (
           ctx.scale(dpr, dpr);
           ctx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
 
-          const sliceWidth = canvasWidth / gameSize;
-          const sliceHeight = canvasHeight / gameSize;
+          const sliceWidth = canvasWidth / gameSize * dpr;
+          const sliceHeight = canvasHeight / gameSize * dpr;
 
           for (let row = 0; row < gameSize; row++) {
             for (let col = 0; col < gameSize; col++) {
               // Create a temporary canvas for each slice
               const sliceCanvas = document.createElement("canvas");
-              sliceCanvas.width = sliceWidth * dpr;
-              sliceCanvas.height = sliceHeight * dpr;
+              sliceCanvas.width = sliceWidth;
+              sliceCanvas.height = sliceHeight;
               const sliceCtx = sliceCanvas.getContext("2d");
 
               if (sliceCtx) {
                 sliceCtx.scale(dpr, dpr);
-                sliceCtx.imageSmoothingEnabled = true;
-                sliceCtx.imageSmoothingQuality = "high";
+                sliceCtx.imageSmoothingEnabled = false;
                 sliceCtx.drawImage(
                   sampleCanvasRef.current,
                   col * sliceWidth,
